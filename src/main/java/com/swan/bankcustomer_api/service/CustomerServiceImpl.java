@@ -38,8 +38,8 @@ public class CustomerServiceImpl implements CustomerService{
     public String updateCustomer(Long customerId, Customer customer) {
         Customer targetCustomer = customerRepository.findById(customerId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Customer does not exist"));
-        targetCustomer.setFirstName(customer.getFirstName());
-        customerRepository.save(targetCustomer);
+        Customer updatedCustomer = applyUpdates(customer, targetCustomer);
+        customerRepository.save(updatedCustomer);
         return "Customer is successfully updated";
     }
 
@@ -51,6 +51,17 @@ public class CustomerServiceImpl implements CustomerService{
         return "Customer is deleted successfully";
     }
 
-//    private void applyUpdates()
+    private Customer applyUpdates(Customer source, Customer target) {
+        if(source.getFirstName() != null) {
+            target.setFirstName(source.getFirstName());
+        }
+        if(source.getLastName() != null) {
+            target.setLastName(source.getLastName());
+        }
+        if(source.getPhoneNumber() != null) {
+            target.setPhoneNumber(source.getPhoneNumber());
+        }
+        return target;
+    }
 
 }
