@@ -1,6 +1,8 @@
 package com.swan.bankcustomer_api.model;
 
 import jakarta.persistence.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 @Entity
 public class Customer {
