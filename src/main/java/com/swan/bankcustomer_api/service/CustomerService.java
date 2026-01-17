@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface CustomerService {
 
-    public String createCustomer();
+    public String createCustomer(Customer customer);
 
     public List<Customer> getAllCustomers();
 
